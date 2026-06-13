@@ -140,6 +140,22 @@ export default function LoginScreen() {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4 pt-2">
+              {isLogin && (
+                <div className="bg-[#1C1C1E] border border-[#242426] p-3 rounded-lg flex items-center justify-between mb-4">
+                  <div className="text-left">
+                    <p className="text-[10px] font-semibold text-[#8E8E93] uppercase tracking-wider mb-0.5">Test Account</p>
+                    <p className="text-xs text-[#E5E5E7]">test@smarttasks.com / password123</p>
+                  </div>
+                  <button 
+                    type="button" 
+                    onClick={() => { setEmail('test@smarttasks.com'); setPassword('password123'); }}
+                    className="px-3 py-1.5 bg-[#242426] hover:bg-[#3A3A3C] font-medium text-[11px] text-[#E5E5E7] rounded transition-colors cursor-pointer"
+                  >
+                    Auto-Fill
+                  </button>
+                </div>
+              )}
+              
               {!isLogin && (
                 <div>
                   <label className="block text-[11px] font-medium text-[#8E8E93] uppercase tracking-wider mb-1.5">

@@ -14,11 +14,32 @@ const PORT = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/task-manager';
+import bcrypt from 'bcryptjs';
+import User from './models/User.js';
 
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
+// MongoDB Connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/task-manager')
+  .then(async () => {
+    console.log('Connected to MongoDB');
+    
+    // Auto-seed test user
+    try {
+      const testEmail = 'test@smarttasks.com';
+      const existingTestUser = await User.findOne({ email: testEmail });
+      if (!existingTestUser) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash('password123', salt);
+        await User.create({
+          email: testEmail,
+          password: hashedPassword,
+          displayName: 'Test User'
+        });
+        console.log('Test user seeded automatically.');
+      }
+    } catch (err) {
+      console.error('Failed to seed test user:', err);
+    }
+  })
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // Routes
