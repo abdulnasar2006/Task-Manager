@@ -9,7 +9,8 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_key_change_in_prod
 // Register a new user
 router.post('/signup', async (req, res) => {
   try {
-    const { email, password, displayName } = req.body;
+    let { email, password, displayName } = req.body;
+    if (email) email = email.toLowerCase();
 
     // Validation
     if (!email || !password || !displayName) {
@@ -63,7 +64,8 @@ router.post('/signup', async (req, res) => {
 // Login an existing user
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
+    if (email) email = email.toLowerCase();
 
     // Validation
     if (!email || !password) {
