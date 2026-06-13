@@ -1,0 +1,6 @@
+{
+  "name": "Task Management Application",
+  "description": "A responsive, real-time task management web app with secure user authentication and full CRUD task tracking capabilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
