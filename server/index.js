@@ -18,7 +18,7 @@ import bcrypt from 'bcryptjs';
 import User from './models/User.js';
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/task-manager')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://abdulnasar2301_db_user:oqpnzqijv0zHZo6Q@cluster0.w4st3bd.mongodb.net/?appName=Cluster0')
   .then(async () => {
     console.log('Connected to MongoDB');
     
